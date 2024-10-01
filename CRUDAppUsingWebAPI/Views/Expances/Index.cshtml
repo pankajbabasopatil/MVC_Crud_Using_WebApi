@@ -1,0 +1,148 @@
+﻿@model IEnumerable<CRUDAppUsingWebAPI.Models.Expances>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            color: #343a40;
+        }
+
+        .table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .table th, .table td {
+            border: 1px solid #dee2e6;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table tr:hover {
+            background-color: #e9ecef;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .create-link {
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Index</h1>
+
+<p class="create-link">
+    <a asp-action="Create">Create New</a>
+</p>
+@{
+        if (TempData["message"]!=null)
+        {
+            <div class="alert alert-sucess alert-dismissible fade show" role="alert">
+                <strong></strong>@TempData["message"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+    }
+}
+    @{
+        if (TempData["message_update"] != null)
+        {
+            <div class="alert alert-sucess alert-dismissible fade show" role="alert">
+                <strong></strong>@TempData["message_update"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+    }
+    @{
+        if (TempData["message_Delete"] != null)
+        {
+            <div class="alert alert-sucess alert-dismissible fade show" role="alert">
+                <strong></strong> @TempData["message_Delete"] 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+    }
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.expenseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dayOfWeek)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.spentAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.totalAmount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.expenseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dayOfWeek)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.spentAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.totalAmount)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+</body>
+</html>
